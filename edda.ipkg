@@ -1,0 +1,54 @@
+package edda
+
+--authors    = Jan de Muijnck-Hughes
+--maintainer = Jan de Muijnck-Hughes
+--license    = BSD3 but see LICENSE for more information
+brief      = "A simple pandoc clone"
+--readme     = README.md
+--version    = 0.1
+--sourceloc  = git://git@github.com:jfdm/idris2-edda.git
+--bugtracker = http://www.github.com/jfdm/idris2-edda/issues
+
+depends = contrib
+        , toolkit
+
+modules = Text.Markup.Edda.Model.Common
+        , Text.Markup.Edda.Model.Raw
+        , Text.Markup.Edda.Model.Processed
+        , Text.Markup.Edda.Model
+
+        , Text.Markup.Edda.Process.Utils
+        , Text.Markup.Edda.Process.Squash
+        , Text.Markup.Edda.Process.Shunt
+        , Text.Markup.Edda.Process.Inline
+
+        , Text.Markup.Edda.Process.Block
+
+
+        , Text.Markup.Edda.Process
+
+        , Text.Markup.Edda.Walk
+        , Text.Markup.Edda.Query
+
+        , Text.Markup.Edda
+
+
+        , Text.Markup.Edda.Writer.Common
+        , Text.Markup.Edda.Writer.Org
+        , Text.Markup.Edda.Writer.LaTeX
+        , Text.Markup.Edda.Writer.CommonMark
+
+        , Text.Markup.Edda.Reader.Common
+--        , Text.Markup.Edda.Reader.Utils
+--        , Text.Markup.Edda.Reader.CommonMark
+--        , Text.Markup.Edda.Reader.Org
+--
+--
+--
+--        , Text.Markup.Edda.Org
+--        , Text.Markup.Edda.LaTeX
+--        , Text.Markup.Edda.CommonMark
+--
+--        , Text.Markup.Edda.Test.Org
+
+-- tests = Text.Markup.Edda.Test.Org.runTests
