@@ -113,21 +113,8 @@ data Edda : EddaTy -> Type where
           -> Edda BLOCK
 
   Para : List (Edda INLINE) -> Edda BLOCK
-  Quotation   : Maybe String -> List (Edda INLINE)-> Edda BLOCK
 
-  Theorem     : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Corollary   : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Lemma       : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Proposition : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Proof       : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Definition  : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Exercise    : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Note        : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Remark      : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Problem     : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Question    : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Solution    : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
-  Example     : Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
+  Named : String -> Maybe String -> List (Edda INLINE) -> List (Edda INLINE) -> Edda BLOCK
 
 
   Snippet : (snippet : List $ Edda ty)

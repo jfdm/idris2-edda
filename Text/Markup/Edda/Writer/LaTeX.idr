@@ -185,21 +185,7 @@ block (Listing l c lang langopts as src) = figure l c (env "verbatim" src)
 block (Comment ss)          = env "comment" ss
 block (Equation l eq)       = env "equation" eq  -- Add support for caption and label
 block (Literal l c src)     = env "verbatim" src -- Add support for caption and label
-
-block (Quotation l txt)     = thm "QUOTE" l Nil txt
-block (Theorem l c txt)     = thm "Theorem" l c txt
-block (Corollary l c txt)   = thm "COROLLARY" l c txt
-block (Lemma l c txt)       = thm "LEMMA" l c txt
-block (Proposition l c txt) = thm "PROPOSITION" l c txt
-block (Proof l c txt)       = thm "PROOF" l c txt
-block (Definition l c txt)  = thm "DEFINITION" l c txt
-block (Exercise l c txt)    = thm "EXERCISE" l c txt
-block (Note l c txt)        = thm "NOTE" l c txt
-block (Remark l c txt)      = thm "REMARK" l c txt
-block (Problem l c txt)     = thm "PROBLEM" l c txt
-block (Question l c txt)    = thm "QUESTION" l c txt
-block (Solution l c txt)    = thm "SOLUTION" l c txt
-block (Example l c txt)     = thm "EXAMPLE" l c txt
+block (Named n l c txt)     = thm n l c txt
 
 export
 blocks : (List (Edda BLOCK)) -> String

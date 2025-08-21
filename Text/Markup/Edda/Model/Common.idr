@@ -28,9 +28,7 @@ public export
 data RawTy    = VerbTy | CodeTy | MathTy
 
 public export
-data TextBlockTy = ParaTy | TheoremTy | CorollaryTy | LemmaTy | PropositionTy | ProofTy | DefinitionTy
-               | ExerciseTy | NoteTy | ProblemTy | QuestionTy | RemarkTy
-               | SolutionTy | ExampleTy | QuotationTy
+data TextBlockTy = ParaTy | Named String
 
 public export
 data VerbBlockTy = CommentTy | ListingTy | LiteralTy | EquationTy
@@ -108,22 +106,7 @@ Eq VerbBlockTy where
 
 Eq TextBlockTy where
     (==) ParaTy         ParaTy        = True
-    (==) TheoremTy      TheoremTy     = True
-    (==) CorollaryTy    CorollaryTy   = True
-    (==) LemmaTy        LemmaTy       = True
-    (==) PropositionTy  PropositionTy = True
-    (==) ProofTy        ProofTy       = True
-    (==) DefinitionTy   DefinitionTy  = True
-
-    (==) ExerciseTy     ExerciseTy    = True
-    (==) NoteTy         NoteTy        = True
-    (==) ProblemTy      ProblemTy     = True
-    (==) QuestionTy     QuestionTy    = True
-    (==) RemarkTy       RemarkTy      = True
-
-    (==) SolutionTy     SolutionTy    = True
-    (==) ExampleTy      ExampleTy     = True
-    (==) QuotationTy    QuotationTy   = True
+    (==) (Named x)      (Named y)     = x == y
     (==) _              _             = False
 
 Eq ListTy where

@@ -40,20 +40,7 @@ mutual
   refineBlock (DList kvs) = DList $ map (\(k, vs) => (process k, process vs)) kvs
 
   refineBlock (TextBlock ParaTy        l c as t) = Para (process t)
-  refineBlock (TextBlock QuotationTy   l c as t) = Quotation   l (process t)
-  refineBlock (TextBlock TheoremTy     l c as t) = Theorem     l (process c) (process t)
-  refineBlock (TextBlock CorollaryTy   l c as t) = Corollary   l (process c) (process t)
-  refineBlock (TextBlock LemmaTy       l c as t) = Lemma       l (process c) (process t)
-  refineBlock (TextBlock PropositionTy l c as t) = Proposition l (process c) (process t)
-  refineBlock (TextBlock ProofTy       l c as t) = Proof       l (process c) (process t)
-  refineBlock (TextBlock DefinitionTy  l c as t) = Definition  l (process c) (process t)
-  refineBlock (TextBlock ExerciseTy    l c as t) = Exercise    l (process c) (process t)
-  refineBlock (TextBlock NoteTy        l c as t) = Note        l (process c) (process t)
-  refineBlock (TextBlock ProblemTy     l c as t) = Problem     l (process c) (process t)
-  refineBlock (TextBlock QuestionTy    l c as t) = Question    l (process c) (process t)
-  refineBlock (TextBlock RemarkTy      l c as t) = Remark      l (process c) (process t)
-  refineBlock (TextBlock SolutionTy    l c as t) = Solution    l (process c) (process t)
-  refineBlock (TextBlock ExampleTy     l c as t) = Example     l (process c) (process t)
+  refineBlock (TextBlock (Named n)     l c as t) = Named n l (process c) (process t)
 
   refineBlock (VerbBlock CommentTy l c as s) = Comment s
   refineBlock (VerbBlock ListingTy l c as s) = Listing l (process c)

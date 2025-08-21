@@ -157,20 +157,7 @@ Show RawTy where
 export
 Show TextBlockTy where
   show ParaTy        = "PARAGRAPH"
-  show TheoremTy     = "THEOREM"
-  show CorollaryTy   = "COROLLARY"
-  show LemmaTy       = "LEMMA"
-  show PropositionTy = "PROPOSITION"
-  show ProofTy       = "PROOF"
-  show DefinitionTy  = "DEFINITION"
-  show ExampleTy     = "EXAMPLE"
-  show ExerciseTy    = "EXERCISE"
-  show NoteTy        = "NOTE"
-  show ProblemTy     = "PROBLEM"
-  show QuestionTy    = "QUESTION"
-  show RemarkTy      = "REMARK"
-  show SolutionTy    = "SOLUTION"
-  show QuotationTy   = "QUOTATION"
+  show (Named n)     = "[BLOCK \{n}}]"
 
 export
 Show VerbBlockTy where

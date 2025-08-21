@@ -10,7 +10,7 @@ import Text.Markup.Edda.Model
 
 export
 strFromMaybe : (a -> String) -> Maybe a -> String
-strFromMaybe f Nothing  = "EMPTY"
+strFromMaybe _ Nothing  = ""
 strFromMaybe f (Just x) = f x
 
 export

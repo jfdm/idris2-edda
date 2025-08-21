@@ -55,21 +55,7 @@ Walkable (Edda INLINE) (Edda BLOCK) where
   walk f (Listing l c ty ops as s)  = Listing l (walk f c) ty ops as s
 
   walk f (Para xs)        = Para $ walk f xs
-  walk f (Quotation l xs) = Quotation l (walk f xs)
-
-  walk f (Theorem l c xs)     = Theorem l (walk f c) (walk f xs)
-  walk f (Corollary l c xs)   = Corollary l (walk f c) (walk f xs)
-  walk f (Lemma l c xs)       = Lemma l (walk f c) (walk f xs)
-  walk f (Proposition l c xs) = Proposition l (walk f c) (walk f xs)
-  walk f (Proof l c xs)       = Proof l (walk f c) (walk f xs)
-  walk f (Definition l c xs)  = Definition l (walk f c) (walk f xs)
-  walk f (Exercise l c xs)    = Exercise l (walk f c) (walk f xs)
-  walk f (Note l c xs)        = Note l (walk f c) (walk f xs)
-  walk f (Remark l c xs)      = Remark l (walk f c) (walk f xs)
-  walk f (Problem l c xs)     = Problem l (walk f c) (walk f xs)
-  walk f (Question l c xs)    = Question l (walk f c) (walk f xs)
-  walk f (Solution l c xs)    = Solution l (walk f c) (walk f xs)
-  walk f (Example l c xs)     = Example l (walk f c) (walk f xs)
+  walk f (Named n l c xs)     = Named n l (walk f c) (walk f xs)
 
   walk f block = block
 
@@ -97,21 +83,8 @@ Walkable (Edda BLOCK) (Edda BLOCK) where
   walk  f (BList xs)  = f $ BList (walk f xs)
 
   walk  f (Para xs)           = f $ Para $ walk f xs
-  walk  f (Quotation l xs)    = f $ Quotation l (walk f xs)
 
-  walk  f (Theorem l c xs)     = f $ Theorem l c (walk f xs)
-  walk  f (Corollary l c xs)   = f $ Corollary l c (walk f xs)
-  walk  f (Lemma l c xs)       = f $ Lemma l c (walk f xs)
-  walk  f (Proposition l c xs) = f $ Proposition l c (walk f xs)
-  walk  f (Proof l c xs)       = f $ Proof l c (walk f xs)
-  walk  f (Definition l c xs)  = f $ Definition l c (walk f xs)
-  walk  f (Exercise l c xs)    = f $ Exercise l c (walk f xs)
-  walk  f (Note l c xs)        = f $ Note l c (walk f xs)
-  walk  f (Remark l c xs)      = f $ Remark l c (walk f xs)
-  walk  f (Problem l c xs)     = f $ Problem l c (walk f xs)
-  walk  f (Question l c xs)    = f $ Question l c (walk f xs)
-  walk  f (Solution l c xs)    = f $ Solution l c (walk f xs)
-  walk  f (Example l c xs)     = f $ Example l c (walk f xs)
+  walk  f (Named n l c xs)     = f $ Named n l c (walk f xs)
 
   walk  f block  = f block
 
@@ -154,3 +127,7 @@ Walkable (Edda SNIPPET) (Edda SNIPPET) where
   walk f x = f x
 
 -- --------------------------------------------------------------------- [ EOF ]
+
+upp : Edda INLINE -> Edda INLINE
+upp (Text _) = Text "Spanish Inquisition"
+upp x = x

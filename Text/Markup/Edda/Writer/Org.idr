@@ -192,20 +192,7 @@ block (Listing l c lang langopts as src) =
 block (Comment ss)          = verbblock "COMMENT" Nothing Nil ss
 block (Equation l eq)       = verbblock "EQUATION" l Nil eq
 block (Literal l c src)     = verbblock "EXAMPLE" l c src
-block (Quotation l txt)     = textblock "QUOTE" l Nil txt
-block (Theorem l c txt)     = textblock "Theorem" l c txt
-block (Corollary l c txt)   = textblock "COROLLARY" l c txt
-block (Lemma l c txt)       = textblock "LEMMA" l c txt
-block (Proposition l c txt) = textblock "PROPOSITION" l c txt
-block (Proof l c txt)       = textblock "PROOF" l c txt
-block (Definition l c txt)  = textblock "DEFINITION" l c txt
-block (Exercise l c txt)    = textblock "EXERCISE" l c txt
-block (Note l c txt)        = textblock "NOTE" l c txt
-block (Remark l c txt)      = textblock "REMARK" l c txt
-block (Problem l c txt)     = textblock "PROBLEM" l c txt
-block (Question l c txt)    = textblock "QUESTION" l c txt
-block (Solution l c txt)    = textblock "SOLUTION" l c txt
-block (Example l c txt)     = textblock "EXAMPLE" l c txt
+block (Named n l c txt)       = textblock n l c txt
 
 ||| Convert a list of blocks to their org mode representation.
 export

@@ -153,21 +153,7 @@ block (Comment ss)          = verbblock ss
 block (Equation l eq)       = verbblock eq
 block (Literal l c src)     = verbblock src
 
-block (Quotation l txt)     = textblock txt
-
-block (Theorem l c txt)     = textblock txt
-block (Corollary l c txt)   = textblock txt
-block (Lemma l c txt)       = textblock txt
-block (Proposition l c txt) = textblock txt
-block (Proof l c txt)       = textblock txt
-block (Definition l c txt)  = textblock txt
-block (Exercise l c txt)    = textblock txt
-block (Note l c txt)        = textblock txt
-block (Remark l c txt)      = textblock txt
-block (Problem l c txt)     = textblock txt
-block (Question l c txt)    = textblock txt
-block (Solution l c txt)    = textblock txt
-block (Example l c txt)     = textblock txt
+block (Named n l c txt)       = textblock txt
 
 blocks : List (Edda BLOCK) -> String
 blocks = concatMap block

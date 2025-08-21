@@ -30,3 +30,4 @@ tutorial/*.fls
 tags
 TAGS
 src/Version_idris.hs
+/build/

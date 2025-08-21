@@ -51,21 +51,7 @@ Queryable (Edda INLINE) (Edda BLOCK) where
   query f (Listing l c ty ops as s) = neutral <+> query f c
 
   query f (Para xs)        = query f xs
-  query f (Quotation l xs) = query f xs
-
-  query f (Theorem l c xs)     = query f xs <+> query f c
-  query f (Corollary l c xs)   = query f xs <+> query f c
-  query f (Lemma l c xs)       = query f xs <+> query f c
-  query f (Proposition l c xs) = query f xs <+> query f c
-  query f (Proof l c xs)       = query f xs <+> query f c
-  query f (Definition l c xs)  = query f xs <+> query f c
-  query f (Exercise l c xs)    = query f xs <+> query f c
-  query f (Note l c xs)        = query f xs <+> query f c
-  query f (Remark l c xs)      = query f xs <+> query f c
-  query f (Problem l c xs)     = query f xs <+> query f c
-  query f (Question l c xs)    = query f xs <+> query f c
-  query f (Solution l c xs)    = query f xs <+> query f c
-  query f (Example l c xs)     = query f xs <+> query f c
+  query f (Named n l c xs)     = query f xs <+> query f c
   query f block = neutral
 
 export
@@ -102,21 +88,7 @@ Queryable (Edda BLOCK) (Edda BLOCK) where
   query f (Listing l c ty ops as s) = f (Listing l c ty ops as s) <+> query f c
 
   query f (Para xs)        = f (Para xs) <+> query f xs
-  query f (Quotation l xs) = f (Quotation l xs) <+> (query f xs)
-
-  query f (Theorem l c xs)     = f (Theorem l c xs) <+> (query f xs) <+> query f c
-  query f (Corollary l c xs)   = f (Corollary l c xs) <+> (query f xs) <+> query f c
-  query f (Lemma l c xs)       = f (Lemma l c xs) <+> (query f xs) <+> query f c
-  query f (Proposition l c xs) = f (Proposition l c xs) <+> (query f xs) <+> query f c
-  query f (Proof l c xs)       = f (Proof l c xs) <+> (query f xs) <+> query f c
-  query f (Definition l c xs)  = f (Definition l c xs) <+> (query f xs) <+> query f c
-  query f (Exercise l c xs)    = f (Exercise l c xs) <+> (query f xs) <+> query f c
-  query f (Note l c xs)        = f (Note l c xs) <+> (query f xs) <+> query f c
-  query f (Remark l c xs)      = f (Remark l c xs) <+> (query f xs) <+> query f c
-  query f (Problem l c xs)     = f (Problem l c xs) <+> (query f xs) <+> query f c
-  query f (Question l c xs)    = f (Question l c xs) <+> (query f xs) <+> query f c
-  query f (Solution l c xs)    = f (Solution l c xs) <+> (query f xs) <+> query f c
-  query f (Example l c xs)     = f (Example l c xs) <+> (query f xs) <+> query f c
+  query f (Named n l c xs)     = f (Named n l c xs) <+> (query f xs) <+> query f c
 
   query f block = f block
 
