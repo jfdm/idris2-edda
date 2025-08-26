@@ -27,6 +27,7 @@ data MarkupTy = BoldTy | EmphTy | StrikeTy | UlineTy
 public export
 data RawTy    = VerbTy | CodeTy | MathTy
 
+-- @todo bring back special blocks
 public export
 data TextBlockTy = ParaTy | Named String
 

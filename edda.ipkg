@@ -12,6 +12,8 @@ brief      = "A simple pandoc clone"
 depends = contrib
 --        , toolkit
 
+executable = edda
+main = Main
 modules = Text.Markup.Edda.Model.Common
         , Text.Markup.Edda.Model.Raw
         , Text.Markup.Edda.Model.Processed
@@ -52,4 +54,5 @@ modules = Text.Markup.Edda.Model.Common
 --
 --        , Text.Markup.Edda.Test.Org
 
+       , Main
 -- tests = Text.Markup.Edda.Test.Org.runTests

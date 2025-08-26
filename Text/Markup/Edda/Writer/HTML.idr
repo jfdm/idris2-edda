@@ -67,7 +67,7 @@ tag' : String
     -> String
     -> String
 tag' n body
-  = unlines [ tagOpen n empty
+  = concat [ tagOpen n empty
             , body
             , tagClosed n
             ]
@@ -86,7 +86,10 @@ inlines
 
 link : String -> List (Edda INLINE) -> String
 link uri Nil
-  = tag' "p" uri
+  = tag id
+        "a"
+        (insert "href" uri empty)
+        uri
 link uri desc
   = tag inlines
         "a"
@@ -127,7 +130,7 @@ inline (FNote l d)
   --macro "footnote" (inlines d)
 
 inline (Cite ty uri)
-  = tag' "em" uri
+  = tag' "cite" uri
 --  case ty of
 --    ParenSty => (macro "cite"  uri)
 --    TextSty  => (macro "citet" uri)
@@ -139,7 +142,7 @@ inline (MiscPunc c) =
     '~' => "&tilde;"
     c   => cast c
 inline Space      = " "
-inline Newline    = "&nbsp;"
+inline Newline    = "\n"
 inline Tab        = "    "
 inline LBrace     = "{"
 inline RBrace     = "}"
@@ -175,7 +178,7 @@ secLvl n
   = if lte n 5 then Just n else Nothing
 
 list : List (List (Edda INLINE)) -> String
-list xxs = unlines $ map (tagSimple inlines "li") xxs
+list xxs = concat $ map (tagSimple inlines "li") xxs
 
 dlist : List (Pair (List (Edda INLINE)) (List (Edda INLINE))) -> String
 dlist kvs
@@ -195,16 +198,16 @@ block : Edda BLOCK -> String
 
 export
 blocks : (List (Edda BLOCK)) -> String
-blocks = assert_total $ concatMap block
+blocks xs = assert_total $ unlines $ map block xs
 
-block (HRule) = tagEmpty "hrule"
+block (HRule) = tagEmpty "hr"
 block (Empty) = "\n"
 block (Section lvl label title as body)
   = case secLvl lvl of
-      Nothing => unlines ["<!-- Unrecognised depth \{show $ S lvl} -->"
+      Nothing => unlines ["<!-- Unrecognised depth \{show $ lvl} -->"
                          , tag' "p" (tag' "strong" $ inlines title)
                          , blocks body]
-      Just n => unlines [ tag inlines "h\{show (S n)}" kvs title
+      Just n => unlines [ tag inlines "h\{show n}" kvs title
                         , blocks body
                         ]
   where
@@ -248,9 +251,10 @@ block (Literal l c src)
 
 block (Named n l c txt)
   = case (toLower n) of
+      "blockquote" => tagSimple inlines "blockquote" txt
       "quote"     => tagSimple inlines "blockquote" txt
       "quotation" => tagSimple inlines "blockquote" txt
-      n => unlines [tag' "p" (tag' "strong" n), tagSimple inlines "p" txt]
+      n => trim $ unlines [tag' "p" (tag' "strong" n), tagSimple inlines "p" txt]
 
 
 
@@ -269,7 +273,7 @@ namespace Doc
   ||| Convert document to HTML instance.
   export
   toHTML : Edda DOC -> String
-  toHTML (Doc title ps body) = unlines
+  toHTML (Doc title ps body) = unlines $
       [ "<!DOCTYPE html>"
       , "<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"\" xml:lang=\"\">"
       , "<head>"
@@ -279,9 +283,10 @@ namespace Doc
       , "</head>"
       , "<!-- \{properties ps} -->"
       , "<body>"
-
-      , concatMap block body
-      , "</body>"
+      ]
+      ++ map (trim . block) body
+      ++ [
+      "</body>"
       , "</html"
       ]
 
@@ -290,10 +295,9 @@ namespace File
   ||| Write HTML representation to file.
   export
   toHTML : String
-           -> Edda DOC
-           -> IO (Either FileError ())
+        -> Edda DOC
+         -> IO (Either FileError ())
   toHTML fn doc = writeEddaFile toHTML fn doc
-
 
 namespace Snippet
   ||| Convert edda document to latex.
