@@ -37,10 +37,11 @@ modules = Text.Markup.Edda.Model.Common
         , Text.Markup.Edda.Writer.Org
         , Text.Markup.Edda.Writer.LaTeX
         , Text.Markup.Edda.Writer.CommonMark
+        , Text.Markup.Edda.Writer.HTML
 
 --        , Text.Markup.Edda.Reader.Common
 --        , Text.Markup.Edda.Reader.Utils
---        , Text.Markup.Edda.Reader.CommonMark
+        , Text.Markup.Edda.Reader.CommonMark
 --        , Text.Markup.Edda.Reader.Org
 --
 --
